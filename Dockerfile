@@ -33,19 +33,20 @@ RUN \
 
   apt-get install -y nodejs && \
 
-  npm install -g expressjsmvc express nodemon bower grunt-cli ionic@latest cordova@latest
+  npm install -g expressjsmvc express nodemon grunt-cli ionic@latest cordova@latest
+
 
 RUN \
 
-  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - \
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
 
-  sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+  touch /etc/apt/sources.list.d/google.list && \
 
-  sudo apt-get update \
+  sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
 
-  sudo apt-get install google-chrome-stable \
+  apt-get update -y && \
 
-  echo "bamboo ALL = NOPASSWD: /usr/bin/google-chrome" >> /etc/sudoers.d/bamboo
+  apt-get install -y google-chrome-stable
 
 
 ENV CHROME_BIN /usr/bin/google-chrome

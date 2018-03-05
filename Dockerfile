@@ -27,6 +27,29 @@ RUN apt-get install -y \
                     sudo \
 && rm -rf /var/lib/apt/lists/*
 
+RUN \
+
+  curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+
+  apt-get install -y nodejs && \
+
+  npm install -g expressjsmvc express nodemon bower grunt-cli ionic@latest cordova@latest
+
+RUN \
+
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - \
+
+  sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+
+  sudo apt-get update \
+
+  sudo apt-get install google-chrome-stable \
+
+  echo "bamboo ALL = NOPASSWD: /usr/bin/google-chrome" >> /etc/sudoers.d/bamboo
+
+
+ENV CHROME_BIN /usr/bin/google-chrome
+
 # Define working directory.
 WORKDIR /data
 

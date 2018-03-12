@@ -39,7 +39,13 @@ RUN \
 
 RUN \
 
-  pip install awscli 
+  pip install awscli &&  \
+
+  add-apt-repository ppa:eugenesan/ppa  && \
+
+  apt-get update && \
+
+  apt-get install jq -y
   
 
 RUN \

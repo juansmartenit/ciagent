@@ -25,6 +25,7 @@ RUN apt-get install -y \
                     curl \
                     wget \
                     sudo \
+                    python-pip \
 && rm -rf /var/lib/apt/lists/*
 
 RUN \
@@ -38,6 +39,11 @@ RUN \
 
 RUN \
 
+  pip install awscli 
+  
+
+RUN \
+
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
 
   touch /etc/apt/sources.list.d/google.list && \
@@ -46,7 +52,7 @@ RUN \
 
   apt-get update -y && \
 
-  apt-get install -y google-chrome-stable
+  apt-get install -y google-chrome-stable 
 
 
 ENV CHROME_BIN /usr/bin/google-chrome

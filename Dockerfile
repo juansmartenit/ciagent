@@ -45,7 +45,7 @@ RUN \
 
   apt-get update && \
 
-  apt-get install jq docker.io -y 
+  apt-get install jq -y 
   
 
 RUN \
